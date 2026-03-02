@@ -4,7 +4,7 @@ const port = process.env.PORT || 3001;
 
 const sqlite = require('node:sqlite');
 const { DatabaseSync } = require('node:sqlite');
-const database = new DatabaseSync('./storage/votes.sqlite');
+const database = new DatabaseSync(':memory:');
 
 const ifExist = database.prepare(`SELECT name FROM sqlite_master WHERE type='table' AND name='votes'`);
 if (ifExist.all().length == 0) {
