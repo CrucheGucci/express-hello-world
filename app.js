@@ -39,7 +39,10 @@ app.get('/all', (req, res) => {
 })
 
 app.get('/Vote1', (req, res) => {
-  res.send(count.get(1).count)
+  const data = {
+      count: count.get(1).count,
+    };
+  res.send(data)
 })
 
 app.get('/Vote2', (req, res) => {
