@@ -21,6 +21,17 @@ const insert = database.prepare('INSERT INTO votes (vote, time) VALUES (?, ?)');
 const getVotes = database.prepare('SELECT vote, time FROM votes');
 const count = database.prepare('SELECT COUNT(vote) as count FROM votes WHERE vote = ?')
 
+const headers = new Headers();
+    headers.set('Access-Control-Allow-Origin', '*')
+    headers.set('Access-Control-Allow-Methods', 'GET, PUT, DELETE, OPTIONS')
+    headers.set('Access-Control-Allow-Headers', 'Content-Type')
+
+app.use((req, res, next) => {
+    res.append('Access-Control-Allow-Origin', '*');
+    res.append('Access-Control-Allow-Methods', 'GET, PUT, DELETE, OPTIONS');
+    res.append('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 
 ////// server
 app.get('/all', (req, res) => {
@@ -28,7 +39,7 @@ app.get('/all', (req, res) => {
 })
 
 app.get('/Vote1', (req, res) => {
-  res.send(`Vote1 total votes: ${count.get(1).count}`)
+  res.send(count.get(1).count)
 })
 
 app.get('/Vote2', (req, res) => {
