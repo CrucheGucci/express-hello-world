@@ -46,11 +46,17 @@ app.get('/Vote1', (req, res) => {
 })
 
 app.get('/Vote2', (req, res) => {
-  res.send(`Vote2 total votes: ${count.get(2).count}`)
+const data = {
+      count: count.get(2).count,
+    };
+  res.send(data)
 })
 
 app.get('/Vote3', (req, res) => {
-  res.send(`Vote3 total votes: ${count.get(3).count}`)
+  const data = {
+      count: count.get(3).count,
+    };
+  res.send(data)
 })
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<----------POST----------------------->>>>>>>>>>>>>>>>>>>>>>>>>>
